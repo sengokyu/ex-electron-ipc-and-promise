@@ -52,6 +52,7 @@ ipcMain.handle("resolve", () => {
 
 ipcMain.handle("reject", () => {
   return new Promise((resolve, reject) => {
-    reject(new Error("Promise are rejected."));
+    throw new Error("Error are thrown.");
+    // reject(new Error("Promise are rejected."));
   });
 });
