@@ -1,20 +1,19 @@
-function ipc(method) {
-  window.Ele[method]()
-    .then((msg) => {
-      console.log(msg);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+async function ipc(method) {
+  try {
+    const msg = await window.Ele[method]();
+    console.log(msg);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 window.addEventListener("load", () => {
-  document.querySelector("#resolve").addEventListener("click", (ev) => {
+  document.querySelector("#resolve").addEventListener("click", async (ev) => {
     ev.preventDefault();
-    ipc("resolve");
+    await ipc("resolve");
   });
-  document.querySelector("#reject").addEventListener("click", (ev) => {
+  document.querySelector("#reject").addEventListener("click", async (ev) => {
     ev.preventDefault();
-    ipc("reject");
+    await ipc("reject");
   });
 });
