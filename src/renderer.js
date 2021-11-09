@@ -5,6 +5,7 @@ function ipc(method) {
     })
     .catch((err) => {
       console.log(err);
+      console.log(err.customMessage);
     });
 }
 

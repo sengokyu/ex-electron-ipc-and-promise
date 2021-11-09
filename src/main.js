@@ -50,8 +50,12 @@ ipcMain.handle("resolve", () => {
   });
 });
 
+class CustomError extends Error {
+  customMessage = "This is CustomError.";
+}
+
 ipcMain.handle("reject", () => {
   return new Promise((resolve, reject) => {
-    reject(new Error("Promise are rejected."));
+    reject(new CustomError("Promise are rejected."));
   });
 });
