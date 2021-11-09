@@ -1,11 +1,14 @@
+const { from } = require("rxjs");
+
 function ipc(method) {
-  window.Ele[method]()
-    .then((msg) => {
+  from(window.Ele[method]()).subscribe({
+    next: (msg) => {
       console.log(msg);
-    })
-    .catch((err) => {
+    },
+    error: (err) => {
       console.log(err);
-    });
+    },
+  });
 }
 
 window.addEventListener("load", () => {
